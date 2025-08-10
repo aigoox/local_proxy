@@ -1,0 +1,15 @@
+[
+    {
+        "target_domain": "testapi.io",
+        "path_map": {
+            "/api/axprogamer/assets": "/apiaa/xprogamer/assets",
+            "/api/xprogamer/assets": "/apia/xprogamer/assets"
+        },
+        "modify_response": true,
+        "new_response_json": {
+            "status": "ok",
+            "debug": "edited by proxy",
+            "data": []
+        }
+    }
+]
