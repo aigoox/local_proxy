@@ -1,46 +1,45 @@
 # Hướng dẫn cài đặt
 
-### Bước 1:
+## Bước 1:
 
-- Chạy tải các thư viện:
+#### Chạy tải các thư viện:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-- Bước 2: chạy server
+#### Bước 2: chạy server
 
-- Bước 3: Truy cập http://mitm.it để cài đặt giấy phép https
+#### Bước 3: Truy cập http://mitm.it để cài đặt giấy phép https
 
-- Bước 4: Thêm proxy vào thiết bị
+#### Bước 4: Thêm proxy vào thiết bị
 + host: 127.0.0.1
 + port: 5579
 
->> Có thể thay port khác nếu port đã bị chiếm hữu!
-
-
+> Có thể thay port khác nếu port đã bị chiếm dụng
 
 # Chạy server
 
 ## - Giao diện website:
 
 ```bash
-mitmweb -s brigde_proxy.py --listen-host 0.0.0.0 --listen-port 5579
+mitmweb -s main.py --listen-host 0.0.0.0 --listen-port 5579
 ```
 
 ## - Giao diện terminal:
 
 ```bash
-mitmproxy -s brigde_proxy.py --listen-host 0.0.0.0 --listen-port 5579
+mitmproxy -s main.py --listen-host 0.0.0.0 --listen-port 5579
 ```
 
 ## - Không có giao diện chỉ chạy server và logs:
+| Khuyến khích
 
 ```bash
-mitmdump -s brigde_proxy.py --listen-host 0.0.0.0 --listen-port 5579
+mitmdump -s main.py --listen-host 0.0.0.0 --listen-port 5579
 ```
 
-# Format mẫu
+# Format cấu hình mẫu
 
 ```
 [
@@ -60,3 +59,14 @@ mitmdump -s brigde_proxy.py --listen-host 0.0.0.0 --listen-port 5579
     }
 ]
 ```
+
+### Bảng chú thích
+
+
+| Field             | Mô tả                      | Ghi chú                                         |
+|-------------------|----------------------------|-------------------------------------------------|
+| target_domain     | Domain cần lắng nghe       | Bắt buộc                                        |
+| redirect_domain   | Domain chuyển hướng        | Không bắt buộc                                  |
+| path_map          | Cấu hình path thay thế     | Không bắt buộc / Key(old_path)=Value (new_path) |
+| modify_response   | Có thay đổi response không | true/false Không bắt buộc                       |
+| new_response_json | Cấu hình response thay thế | Bắt buộc khi modify_response = true             |
