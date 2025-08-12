@@ -1,25 +1,16 @@
 import json
 from mitmproxy import http
-
-# Handle validate function
-def exceptionValue(message):
-    raise ValueError(message)
+from response import modify_json_response
+from validate import exceptionValue, isFormatArrayObject
 
 # Read file JSON
 with open("configs.json", "r", encoding="utf-8") as f:
     CONFIG = json.load(f)
 
 # Check format json config
-if not isinstance(CONFIG, list):
-    exceptionValue("JSON bắt buộc phải là list")
-
-for idx, item in enumerate(CONFIG):
-    if not isinstance(item, dict):
-        exceptionValue(f"Phần tử thứ {idx} không phải object")
-    required_keys = ["target_domain", "path_map"]
-    for key in required_keys:
-        if key not in item:
-            exceptionValue(f"Phần tử thứ {idx + 1} thiếu key '{key}'")
+isCheckValidateConfig = isFormatArrayObject(CONFIG, ["target_domain", "path_map"])
+if isCheckValidateConfig != None:
+    exceptionValue(isCheckValidateConfig)
 
 # Handle request
 def request(flow: http.HTTPFlow):
@@ -30,14 +21,20 @@ def request(flow: http.HTTPFlow):
         None
     )
     print(f"----request: {CONFIG_OBJECT}")
-    if(CONFIG_OBJECT) :    
+    if CONFIG_OBJECT != None:    
         try:
-            path_only = flow.request.path.split("?")[0]
-            if path_only in CONFIG_OBJECT.get("path_map"):
-                if CONFIG_OBJECT.get("redirect_domain"):
-                    flow.request.host = CONFIG_OBJECT.get("redirect_domain")
+            pathOnly = flow.request.path.split("?")[0]
+            if pathOnly in CONFIG_OBJECT.get("path_map"):
+                pathKey = CONFIG_OBJECT.get("path_map")[pathOnly]
+                pathRedirect = pathKey.get("redirect")
+                if pathRedirect != None:
 
-                flow.request.path = CONFIG_OBJECT.get("path_map")[path_only]
+                    if CONFIG_OBJECT.get("redirect_domain"):
+                        flow.request.host = CONFIG_OBJECT.get("redirect_domain")
+
+                    flow.request.path = pathRedirect
+                else:
+                    CONFIG_OBJECT = None
             else:
                 CONFIG_OBJECT = None     
         except Exception as e:
@@ -46,44 +43,18 @@ def request(flow: http.HTTPFlow):
     else:
         return
 
-def modify_json_response(original_json):
-    try:
-        modify_type = CONFIG_OBJECT.get("modify_response_type")
-        new_data = CONFIG_OBJECT.get("new_response_json")
-
-        if modify_type == "full":
-            return new_data
-
-        elif modify_type == "field":
-            path = new_data.get("path")
-            value = new_data.get("value")
-            if not path:
-                return original_json
-
-            keys = path.split("/")
-            temp = original_json
-            for k in keys[:-1]:
-                if k not in temp or not isinstance(temp[k], dict):
-                    temp[k] = {}
-                temp = temp[k]
-            temp[keys[-1]] = value
-            return original_json
-
-        else:
-            return original_json
-    except Exception as e:
-        print(f"Error Modifier: {e}")
-
-
 # Handle response
 def response(flow: http.HTTPFlow):
 
     print(f"----response: {CONFIG_OBJECT}")
-    if(CONFIG_OBJECT) :  
+    if CONFIG_OBJECT != None:  
         try:
-            modifyResponseType = CONFIG_OBJECT.get("modify_response_type")
-            isModify = modifyResponseType == "full" or modifyResponseType == "field"
-            newResponse = CONFIG_OBJECT.get("new_response_json")
+            
+            pathOnly = flow.request.path.split("?")[0]
+            pathKey = CONFIG_OBJECT.get("path_map").get(pathOnly)
+            modifyResponseType = pathKey.get("modify_response_type")
+            isModify = modifyResponseType == "full" or modifyResponseType == "field" or modifyResponseType == "array"
+            newResponse = pathKey.get("new_response_json")
             if isModify and newResponse != None:
                 # flow.response.headers["Content-Type"] = "application/json"
                 try:
@@ -91,10 +62,8 @@ def response(flow: http.HTTPFlow):
                 except json.JSONDecodeError as e:
                     print(f"JSON parse error: {e}")
                     return  # Không phải JSON thì bỏ qua
-                modified_json = modify_json_response(original_json)
-                print(f"after response: {modified_json}")
-                flow.response.text = json.dumps(modified_json, ensure_ascii=False)
-                print(f"after response modify: {flow.response.text}")
+                modifiedJson = modify_json_response(original_json, pathKey)
+                flow.response.text = json.dumps(modifiedJson, ensure_ascii=False)
 
         except Exception as e:
             print(f"Error Response: {e}")
