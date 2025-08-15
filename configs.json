@@ -1,6 +1,6 @@
 [
     {
-        "target_domain": "nhansu.ttpmhcm.com",
+        "target_domain": "testapi.com",
         "path_map": {
             "/api/nhansu/": {
                 "redirect": "/api/nhansu/",
