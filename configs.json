@@ -1,16 +1,14 @@
 [
     {
-        "target_domain": "testapi.io",
+        "target_domain": "htvmobilestage.mytv.vn",
         "path_map": {
-            "/api/xprogamer/test_proxy": {
-                "redirect": "/api/xprogamer/test_proxy",
+            "/api/v1/mobile/content/592": {
+                "redirect": "/api/v1/mobile/content/592",
+                "status_code": 200,
                 "modify_response_type": "field",
                 "new_response_json": {
-                    "value": {
-                        "field": "name",
-                        "value": "test new field"
-                    },
-                    "path": "info/partition"
+                    "value": "Test Proxy Local",
+                    "path": "data/CONTENT_NAME"
                 }
             }
         }

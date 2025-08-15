@@ -20,10 +20,11 @@ def request(flow: http.HTTPFlow):
         (cfg for cfg in CONFIG if flow.request.pretty_host == cfg.get("target_domain")),
         None
     )
-    print(f"----request: {CONFIG_OBJECT}")
+    print(f"----request: {flow.request.pretty_host} | {CONFIG_OBJECT}")
     if CONFIG_OBJECT != None:    
         try:
-            pathOnly = flow.request.path.split("?")[0]
+            pathSplit = flow.request.path.split("?")
+            pathOnly = pathSplit[0]
             if pathOnly in CONFIG_OBJECT.get("path_map"):
                 pathKey = CONFIG_OBJECT.get("path_map")[pathOnly]
                 pathRedirect = pathKey.get("redirect")
@@ -32,6 +33,10 @@ def request(flow: http.HTTPFlow):
                     if CONFIG_OBJECT.get("redirect_domain"):
                         flow.request.host = CONFIG_OBJECT.get("redirect_domain")
 
+                    if(len(pathOnly) > 1):
+                        pathRedirect += f"?{pathSplit[1]}"
+
+                    print(f"Path chuyển đổi: {pathRedirect}")
                     flow.request.path = pathRedirect
                 else:
                     CONFIG_OBJECT = None
@@ -55,13 +60,17 @@ def response(flow: http.HTTPFlow):
             modifyResponseType = pathKey.get("modify_response_type")
             isModify = modifyResponseType == "full" or modifyResponseType == "field" or modifyResponseType == "array"
             newResponse = pathKey.get("new_response_json")
+
+            if pathKey.get("status_code") != None:
+                flow.response.status_code = pathKey.get("status_code")
+
             if isModify and newResponse != None:
                 # flow.response.headers["Content-Type"] = "application/json"
                 try:
                     original_json = json.loads(flow.response.text)
                 except json.JSONDecodeError as e:
                     print(f"JSON parse error: {e}")
-                    return  # Không phải JSON thì bỏ qua
+                    return
                 modifiedJson = modify_json_response(original_json, pathKey)
                 flow.response.text = json.dumps(modifiedJson, ensure_ascii=False)
 

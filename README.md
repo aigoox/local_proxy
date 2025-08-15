@@ -49,6 +49,7 @@ mitmdump -s main.py --listen-host 0.0.0.0 --listen-port 5579
             "/api/xprogamer/test_proxy": {
                 "redirect": "/api/xprogamer/test_proxy",
                 "modify_response_type": "field",
+                "status_code": 200,
                 "new_response_json": {
                     "value": {
                         "field": "name",
@@ -76,6 +77,7 @@ mitmdump -s main.py --listen-host 0.0.0.0 --listen-port 5579
 | path_map/new_response_json/path         | Path thay đổi trong json   | Dành cho modify_response_type = field và array                                       |
 | path_map/new_response_json/value/value  | Model thay đổi             | Dành cho modify_response_type = array                                                |
 | path_map/new_response_json/value/field  | Field cần thay đổi         | Dành cho modify_response_type = array                                                |
+| path_map/new_response_json/status_code  | Status code của response   | Không bắt buộc - Không truyền sẽ lấy trạng thái của response thật                    |
 
 ### Ví dụ:
 
