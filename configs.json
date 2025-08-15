@@ -1,14 +1,23 @@
 [
     {
-        "target_domain": "htvmobilestage.mytv.vn",
+        "target_domain": "nhansu.ttpmhcm.com",
         "path_map": {
-            "/api/v1/mobile/content/592": {
-                "redirect": "/api/v1/mobile/content/592",
+            "/api/nhansu/": {
+                "redirect": "/api/nhansu/",
                 "status_code": 200,
-                "modify_response_type": "field",
+                "modify_response_type": "array",
                 "new_response_json": {
-                    "value": "Test Proxy Local",
-                    "path": "data/CONTENT_NAME"
+                    "value": [
+                        {
+                            "field": "name",
+                            "value": "Thong kute"
+                        },
+                        {
+                            "field": "gmail",
+                            "value": "Thong kute"
+                        }
+                    ],
+                    "path": "results"
                 }
             }
         }

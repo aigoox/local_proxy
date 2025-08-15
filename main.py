@@ -3,6 +3,8 @@ from mitmproxy import http
 from response import modify_json_response
 from validate import exceptionValue, isFormatArrayObject
 
+CONFIG_OBJECT = {}
+
 # Read file JSON
 with open("configs.json", "r", encoding="utf-8") as f:
     CONFIG = json.load(f)
@@ -14,49 +16,76 @@ if isCheckValidateConfig != None:
 
 # Handle request
 def request(flow: http.HTTPFlow):
-
     global CONFIG_OBJECT
-    CONFIG_OBJECT = next(
-        (cfg for cfg in CONFIG if flow.request.pretty_host == cfg.get("target_domain")),
+    host = flow.request.pretty_host
+    path = flow.request.path
+    print(f"Request : {host}{path}")
+    dataFilter = next(
+        (cfg for cfg in CONFIG if host == cfg.get("target_domain")),
         None
     )
-    print(f"----request: {flow.request.pretty_host} | {CONFIG_OBJECT}")
-    if CONFIG_OBJECT != None:    
+    pathSplit = path.split("?")
+    pathOnly = pathSplit[0]
+
+    if dataFilter == None:
+        CONFIG_OBJECT[pathOnly] = dataFilter
+        return 
+    CONFIG_OBJECT[path] = dataFilter
+    if dataFilter != None:    
         try:
-            pathSplit = flow.request.path.split("?")
-            pathOnly = pathSplit[0]
-            if pathOnly in CONFIG_OBJECT.get("path_map"):
-                pathKey = CONFIG_OBJECT.get("path_map")[pathOnly]
+            
+            print(f"---- pathSplit: {pathSplit}")
+            if pathOnly in dataFilter.get("path_map"):
+                
+                print(f"----request: {host} | {dataFilter}")
+                pathKey = dataFilter.get("path_map")[pathOnly]
                 pathRedirect = pathKey.get("redirect")
                 if pathRedirect != None:
 
-                    if CONFIG_OBJECT.get("redirect_domain"):
-                        flow.request.host = CONFIG_OBJECT.get("redirect_domain")
+                    if dataFilter.get("redirect_domain"):
+                        flow.request.host = dataFilter.get("redirect_domain")
 
-                    if(len(pathOnly) > 1):
+                    if(len(pathSplit) > 1):
                         pathRedirect += f"?{pathSplit[1]}"
 
                     print(f"Path chuyển đổi: {pathRedirect}")
                     flow.request.path = pathRedirect
                 else:
-                    CONFIG_OBJECT = None
+                    print(f"setup one 1 - {pathOnly}")
+                    CONFIG_OBJECT[pathOnly] = None
             else:
-                CONFIG_OBJECT = None     
+                print(f"setup one 2 - {pathOnly}")
+                CONFIG_OBJECT[pathOnly] = None     
         except Exception as e:
+            print(f"setup one 3 - {pathOnly}")
+            CONFIG_OBJECT[pathOnly] = None 
             print(f"Request Exception: {e}")
             return   
     else:
+        print(f"setup one 4")
+        CONFIG_OBJECT[pathOnly] = None
         return
 
 # Handle response
 def response(flow: http.HTTPFlow):
 
-    print(f"----response: {CONFIG_OBJECT}")
-    if CONFIG_OBJECT != None:  
+    if CONFIG_OBJECT == None:
+        print(f"----response: None")
+        return
+
+    path = flow.request.path
+    pathSplit = path.split("?")
+    pathOnly = pathSplit[0]
+
+    dataConfig = CONFIG_OBJECT.get(pathOnly)
+
+    print(f"----response: {dataConfig}")
+
+    if dataConfig != None:  
         try:
             
             pathOnly = flow.request.path.split("?")[0]
-            pathKey = CONFIG_OBJECT.get("path_map").get(pathOnly)
+            pathKey = dataConfig.get("path_map").get(pathOnly)
             modifyResponseType = pathKey.get("modify_response_type")
             isModify = modifyResponseType == "full" or modifyResponseType == "field" or modifyResponseType == "array"
             newResponse = pathKey.get("new_response_json")
@@ -73,9 +102,11 @@ def response(flow: http.HTTPFlow):
                     return
                 modifiedJson = modify_json_response(original_json, pathKey)
                 flow.response.text = json.dumps(modifiedJson, ensure_ascii=False)
-
+                CONFIG_OBJECT[pathOnly] = None
         except Exception as e:
             print(f"Error Response: {e}")
+            
+            CONFIG_OBJECT[pathOnly] = None
             return
     else:
         return
