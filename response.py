@@ -3,14 +3,14 @@ from validate import isFormatArrayObject, exceptionValue
 def handle_set_response(original_json, array_field):
     isFormat = isFormatArrayObject(array_field, ["field"])
 
-    print(isFormat)
     if isFormat != None:
         exceptionValue(isFormat)
         return
+    tamp = original_json
     for item in array_field:
-        original_json[item.get("field")] = item.get("value",None)
+        tamp[item.get("field")] = item.get("value",None)
 
-    return original_json
+    return tamp
 
 def modify_json_response(originalJson, pathKey):
     try:
@@ -18,7 +18,7 @@ def modify_json_response(originalJson, pathKey):
         newData = pathKey.get("new_response_json")
 
         if modifyType == "full":
-            return pathKey
+            return newData
 
         elif modifyType == "field" or modifyType == "array":
             
@@ -33,7 +33,6 @@ def modify_json_response(originalJson, pathKey):
                         if k not in temp or not isinstance(temp[k], dict):
                             temp[k] = {}
                         temp = temp[k]
-                print(f"------- keys: {keys}")
 
                 if modifyType == "field":
                     if keys != None:

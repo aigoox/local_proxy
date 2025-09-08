@@ -1,21 +1,164 @@
 [
-    {
-        "target_domain": "apigwstage.mytv.vn",
-        "path_map": {
-            "/api/v1/promotion/info": {
-                "redirect": "/api/v1/promotion/info",
-                "status_code": 200,
-                "modify_response_type": "field",
-                "new_response_json": {
-                    "value": [
-                        {
-                            "field": "is_valid_time",
-                            "value": "1"
-                        }
-                    ],
-                    "path": "data/info"
-                }
-            }
+  {
+    "target_domain": "apigwstage.mytv.vn",
+    "path_map": {
+      "/api/v1/promotion/info": {
+        "redirect": "/api/v1/promotion/info",
+        "status_code": 200,
+        "modify_response_type": "full",
+        "new_response_json": {
+          "status": 200,
+          "result": 0,
+          "message": "Thành công!",
+          "data": {
+            "info": {
+              "image_background": "https://s77107.cdn.mytvnet.vn/vimages/2c/c6/66/69/9b/be/2c669-lprogifttvwebappbackgroundlxquaystrngthng82023-common-image-unkn.jpg",
+              "image_gift_active": "https://s77107.cdn.mytvnet.vn/vimages/b6/69/99/92/2a/a5/b6992-lprogifttvwebappgiftactivelxquaystrngthng82023-common-image-unkn.png",
+              "image_gift_inactive": "https://s77107.cdn.mytvnet.vn/vimages/95/5e/eb/b5/57/7e/95eb5-lprogifttvwebappgiftinactivelxquaystrngthng82023-common-image-unkn.png",
+              "text_exist_opening": "Quý khách còn {0} lượt, chọn 1 phần quà để mở",
+              "text_exist_opening_desc": "MyTV tặng Quý khách {0} lượt mở quà mỗi ngày",
+              "text_support": "Tổng đài CSKH: 18001166"
+            },
+            "exist_opening": 1,
+            "rest_gift": 4856,
+            "is_valid_time": "1"
+          },
+          "error": null
         }
+      },
+      "/api/v1/promotion/open": {
+        "redirect": "/api/v1/promotion/open",
+        "modify_response_type": "full",
+        "new_response_json": {
+          "status": 200,
+          "result": 0,
+          "message": "Thành công!",
+          "data": {
+            "WIN": true,
+            "PRIZE_ID": 6,
+            "PRIZE_CODE": "vnpt_2",
+            "PRIZE_NAME": "Ví VNPT Money 200.000 đ",
+            "PRIZE_MESSAGE": "200.000 đồng trong tài khoản Ví VNPT Money do VNPT cung cấp",
+            "WARNING_MESSAGE": "nhận giải thưởng trước ngày 2023-07-28",
+            "PRIZE_TYPE": 2,
+            "PRIZE_VALUE": 200000,
+            "IMAGE_PHONE": "https://s77105.cdn.mytvnet.vn/vimages/c8/81/1d/db/b2/21/c81db-pvinaphone-common-clip-unkn.png",
+            "IMAGE_WEB": null,
+            "exist_opening": 4
+          },
+          "error": null
+        }
+      },
+      "/api/v1/promotion/gifts": {
+        "redirect": "/api/v1/promotion/gifts",
+        "modify_response_type": "full",
+        "new_response_json": {
+          "status": 200,
+          "result": 0,
+          "message": "Thành công!",
+          "data": [
+            {
+              "PRIZE_ID": 1,
+              "PRIZE_NAME": "Thẻ điện thoại 500.000 đ",
+              "PRIZE_TYPE": 1,
+              "PRIZE_VALUE": 50000,
+              "CREATE_DATE": "10:56 13/07/2023",
+              "TIME_WIN": 0,
+              "IMAGE_PRICE_TV": null,
+              "IMAGE_PRICE_PHONE": "https://s77105.cdn.mytvnet.vn/vimages/c8/81/1d/db/b2/21/c81db-pvinaphone-common-clip-unkn.png",
+              "IMAGE_PRICE_WEB": null,
+              "STATUS": 0,
+              "TEXT_STATUS": "Chưa sử dụng",
+              "TEXT_BUTTON": "Nhận thưởng"
+            },
+            {
+              "PRIZE_ID": 1,
+              "PRIZE_NAME": "Galaxy",
+              "PRIZE_TYPE": 3,
+              "PRIZE_VALUE": 50000,
+              "CREATE_DATE": "10:56 13/07/2023",
+              "TIME_WIN": 0,
+              "IMAGE_PRICE_TV": null,
+              "IMAGE_PRICE_PHONE": "null",
+              "IMAGE_PRICE_WEB": null,
+              "STATUS": 1,
+              "TEXT_STATUS": "Đang chờ",
+              "TEXT_BUTTON": "Đang xử lý"
+            },
+            {
+              "PRIZE_ID": 1,
+              "PRIZE_NAME": "Tiền VNPT Money",
+              "PRIZE_TYPE": 2,
+              "PRIZE_VALUE": 50000,
+              "CREATE_DATE": "10:56 13/07/2023",
+              "TIME_WIN": 0,
+              "IMAGE_PRICE_TV": null,
+              "IMAGE_PRICE_PHONE": "https://banhangvnpt.vn/Uploads/images/2023/KM%20vnpt%20money.jpg",
+              "IMAGE_PRICE_WEB": null,
+              "STATUS": 2,
+              "TEXT_STATUS": "Đã nhận",
+              "TEXT_BUTTON": "Xem mã"
+            },
+            {
+              "PRIZE_ID": 1,
+              "PRIZE_NAME": "Thẻ điện thoại 500.000 đ",
+              "PRIZE_TYPE": 1,
+              "PRIZE_VALUE": 50000,
+              "CREATE_DATE": "10:56 13/07/2023",
+              "TIME_WIN": 0,
+              "IMAGE_PRICE_TV": null,
+              "IMAGE_PRICE_PHONE": "https://s77105.cdn.mytvnet.vn/vimages/c8/81/1d/db/b2/21/c81db-pvinaphone-common-clip-unkn.png",
+              "IMAGE_PRICE_WEB": null,
+              "STATUS": 3,
+              "TEXT_STATUS": "Hết hạn",
+              "TEXT_BUTTON": "Khóa nút"
+            }
+          ],
+          "error": null
+        }
+      },
+      "/api/v1/promotion/check-status/1895": {
+        "redirect": "/api/v1/promotion/check-status/1895",
+        "modify_response_type": "full",
+        "new_response_json": {
+          "status": 200,
+          "result": 0,
+          "message": "Thành công!",
+          "data": {
+            "type_screen": 2,
+            "data": {
+              "PRIZE_VALUE": 50000,
+              "PRIZE_VALUE_TEXT": "50.000 đ",
+              "CREATE_DATE": "2025-09-08 14:02:39",
+              "EXPIRE_DATE": "2025-09-12 14:02:39",
+              "PRIZE_TYPE": 1,
+              "PRIZE_NAME": "Mã thẻ điện thoại",
+              "PRIZE_FORM": "Tặng mã thẻ điện thoại",
+              "TELCO": [
+                {
+                  "CODE": "Vinaphone",
+                  "IMAGE_PHONE": "https://s77106.cdn.mytvnet.vn/vimages/c8/81/1d/db/b2/21/c81db-pvinaphone-common-clip-unkn.png",
+                  "IMAGE_TV": "https://s77106.cdn.mytvnet.vn/vimages/5e/e1/1d/da/a9/99/5e1da-pvinaphone-common-clip-unkn.png",
+                  "IMAGE_WEB": "https://s77106.cdn.mytvnet.vn/vimages/c7/75/5b/b5/58/80/c75b5-pvinaphone-common-clip-unkn.png"
+                },
+                {
+                  "CODE": "Mobifone",
+                  "IMAGE_PHONE": "https://s77106.cdn.mytvnet.vn/vimages/3a/a1/1f/fc/c5/54/3a1fc-pmobifone-common-clip-unkn.png",
+                  "IMAGE_TV": "https://s77106.cdn.mytvnet.vn/vimages/2c/c1/14/46/61/1f/2c146-pmobifone-common-clip-unkn.png",
+                  "IMAGE_WEB": "https://s77106.cdn.mytvnet.vn/vimages/2c/c5/51/15/5c/c3/2c515-pmobifone-common-clip-unkn.png"
+                },
+                {
+                  "CODE": "Viettel",
+                  "IMAGE_PHONE": "https://s77106.cdn.mytvnet.vn/vimages/47/78/8b/bb/bb/be/478bb-pviettel-common-clip-unkn.png",
+                  "IMAGE_TV": "https://s77106.cdn.mytvnet.vn/vimages/0a/a5/5b/b6/6e/e4/0a5b6-pviettel-common-clip-unkn.png",
+                  "IMAGE_WEB": "https://s77106.cdn.mytvnet.vn/vimages/cd/da/ab/be/e8/8f/cdabe-pviettel-common-clip-unkn.png"
+                }
+              ]
+            }
+          },
+          "error": null
+        }
+      }
     }
+  }
 ]
