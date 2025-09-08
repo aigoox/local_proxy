@@ -1,23 +1,19 @@
 [
     {
-        "target_domain": "testapi.com",
+        "target_domain": "apigwstage.mytv.vn",
         "path_map": {
-            "/api/nhansu/": {
-                "redirect": "/api/nhansu/",
+            "/api/v1/promotion/info": {
+                "redirect": "/api/v1/promotion/info",
                 "status_code": 200,
-                "modify_response_type": "array",
+                "modify_response_type": "field",
                 "new_response_json": {
                     "value": [
                         {
-                            "field": "name",
-                            "value": "Thong kute"
-                        },
-                        {
-                            "field": "gmail",
-                            "value": "Thong kute"
+                            "field": "is_valid_time",
+                            "value": "1"
                         }
                     ],
-                    "path": "results"
+                    "path": "data/info"
                 }
             }
         }

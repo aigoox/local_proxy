@@ -28,43 +28,40 @@ def request(flow: http.HTTPFlow):
     pathOnly = pathSplit[0]
 
     if dataFilter == None:
-        CONFIG_OBJECT[pathOnly] = dataFilter
-        return 
-    CONFIG_OBJECT[path] = dataFilter
-    if dataFilter != None:    
-        try:
-            
-            print(f"---- pathSplit: {pathSplit}")
-            if pathOnly in dataFilter.get("path_map"):
-                
-                print(f"----request: {host} | {dataFilter}")
-                pathKey = dataFilter.get("path_map")[pathOnly]
-                pathRedirect = pathKey.get("redirect")
-                if pathRedirect != None:
-
-                    if dataFilter.get("redirect_domain"):
-                        flow.request.host = dataFilter.get("redirect_domain")
-
-                    if(len(pathSplit) > 1):
-                        pathRedirect += f"?{pathSplit[1]}"
-
-                    print(f"Path chuyển đổi: {pathRedirect}")
-                    flow.request.path = pathRedirect
-                else:
-                    print(f"setup one 1 - {pathOnly}")
-                    CONFIG_OBJECT[pathOnly] = None
-            else:
-                print(f"setup one 2 - {pathOnly}")
-                CONFIG_OBJECT[pathOnly] = None     
-        except Exception as e:
-            print(f"setup one 3 - {pathOnly}")
-            CONFIG_OBJECT[pathOnly] = None 
-            print(f"Request Exception: {e}")
-            return   
-    else:
-        print(f"setup one 4")
+        
+        print(f"setup one 0 - {pathOnly}")
         CONFIG_OBJECT[pathOnly] = None
-        return
+        return 
+    CONFIG_OBJECT[pathOnly] = dataFilter
+    print(f"-----CONFIG_OBJECT: {CONFIG_OBJECT == None}")
+    try:
+        print(f"---- pathSplit: {pathSplit}")
+        if pathOnly in dataFilter.get("path_map"):
+            
+            print(f"----request: {host} | {dataFilter}")
+            pathKey = dataFilter.get("path_map")[pathOnly]
+            pathRedirect = pathKey.get("redirect")
+            if pathRedirect != None:
+
+                if dataFilter.get("redirect_domain"):
+                    flow.request.host = dataFilter.get("redirect_domain")
+
+                if(len(pathSplit) > 1):
+                    pathRedirect += f"?{pathSplit[1]}"
+
+                print(f"Path chuyển đổi: {pathRedirect}")
+                flow.request.path = pathRedirect
+            else:
+                print(f"setup one 1 - {pathOnly}")
+                CONFIG_OBJECT[pathOnly] = None
+        else:
+            print(f"setup one 2 - {pathOnly}")
+            CONFIG_OBJECT[pathOnly] = None     
+    except Exception as e:
+        print(f"setup one 3 - {pathOnly}")
+        CONFIG_OBJECT[pathOnly] = None 
+        print(f"Request Exception: {e}")
+        return  
 
 # Handle response
 def response(flow: http.HTTPFlow):
@@ -79,7 +76,9 @@ def response(flow: http.HTTPFlow):
 
     dataConfig = CONFIG_OBJECT.get(pathOnly)
 
-    print(f"----response: {dataConfig}")
+    print(f"----CONFIG_OBJECT response: {CONFIG_OBJECT}")
+
+    print(f"----response dataConfig: pathOnly: {pathOnly} | dataConfig {dataConfig}")
 
     if dataConfig != None:  
         try:
