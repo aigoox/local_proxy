@@ -44,7 +44,33 @@
             "PRIZE_VALUE": 200000,
             "IMAGE_PHONE": "https://s77105.cdn.mytvnet.vn/vimages/c8/81/1d/db/b2/21/c81db-pvinaphone-common-clip-unkn.png",
             "IMAGE_WEB": null,
-            "exist_opening": 4
+            "exist_opening": 4,
+            "EXPIRE_DATE": "2023-08-07 09:07:35"
+          },
+          "error": null
+        }
+      },
+      "/api/v1/promotion/openx": {
+        "redirect": "/api/v1/promotion/open",
+        "modify_response_type": "full",
+        "new_response_json": {
+          "status": 200,
+          "result": 0,
+          "message": "Thành công!",
+          "data": {
+            "exist_opening": 24,
+            "WIN": false,
+            "PRIZE_ID": 11,
+            "PRIZE_CODE": "miss",
+            "PRIZE_NAME": "Giải may mắn",
+            "PRIZE_MESSAGE": "Chúc Quý khách may mắn lần sau",
+            "WARNING_MESSAGE": "Tổng đài CSKH: 1800 1166 (miễn phí)",
+            "PRIZE_TYPE": 0,
+            "PRIZE_VALUE": 0,
+            "IMAGE_TV": "/vimages/e7/74/47/72/24/4b/e7472-pgiimaymn1-common-clip-unkn.png",
+            "IMAGE_PHONE": "/vimages/4c/c8/8c/c9/99/9a/4c8c9-pgiimaymn1-common-clip-unkn.png",
+            "IMAGE_WEB": "/vimages/10/02/26/62/2b/bd/10262-pxemphimgalaxyplay-common-clip-unkn.png",
+            "EXPIRE_DATE": "13/09/2025"
           },
           "error": null
         }
@@ -72,7 +98,7 @@
               "TEXT_BUTTON": "Nhận thưởng"
             },
             {
-              "PRIZE_ID": 1,
+              "PRIZE_ID": 2,
               "PRIZE_NAME": "Galaxy",
               "PRIZE_TYPE": 3,
               "PRIZE_VALUE": 50000,
@@ -81,12 +107,12 @@
               "IMAGE_PRICE_TV": null,
               "IMAGE_PRICE_PHONE": "null",
               "IMAGE_PRICE_WEB": null,
-              "STATUS": 1,
-              "TEXT_STATUS": "Đang chờ",
-              "TEXT_BUTTON": "Đang xử lý"
+              "STATUS": 2,
+              "TEXT_STATUS": "Đã nhận",
+              "TEXT_BUTTON": "Xem mã"
             },
             {
-              "PRIZE_ID": 1,
+              "PRIZE_ID": 3,
               "PRIZE_NAME": "Tiền VNPT Money",
               "PRIZE_TYPE": 2,
               "PRIZE_VALUE": 50000,
@@ -100,7 +126,7 @@
               "TEXT_BUTTON": "Xem mã"
             },
             {
-              "PRIZE_ID": 1,
+              "PRIZE_ID": 4,
               "PRIZE_NAME": "Thẻ điện thoại 500.000 đ",
               "PRIZE_TYPE": 1,
               "PRIZE_VALUE": 50000,
@@ -109,16 +135,72 @@
               "IMAGE_PRICE_TV": null,
               "IMAGE_PRICE_PHONE": "https://s77105.cdn.mytvnet.vn/vimages/c8/81/1d/db/b2/21/c81db-pvinaphone-common-clip-unkn.png",
               "IMAGE_PRICE_WEB": null,
+              "STATUS": 2,
+              "TEXT_STATUS": "Đã nhận",
+              "TEXT_BUTTON": "Xem mã"
+            },
+            {
+              "PRIZE_ID": 5,
+              "PRIZE_NAME": "Galaxy",
+              "PRIZE_TYPE": 3,
+              "PRIZE_VALUE": 50000,
+              "CREATE_DATE": "10:56 13/07/2023",
+              "TIME_WIN": 0,
+              "IMAGE_PRICE_TV": null,
+              "IMAGE_PRICE_PHONE": "https://s12936.cdn.mytvnet.vn/vimages/ec/c4/4e/e0/02/22/ec4e0-pphimgalaxy-common-clip-unkn.png",
+              "IMAGE_PRICE_WEB": null,
+              "STATUS": 0,
+              "TEXT_STATUS": "Chưa sử dụng",
+              "TEXT_BUTTON": "Nhận thưởng"
+            },
+            {
+              "PRIZE_ID": 6,
+              "PRIZE_NAME": "Tiền VNPT Money",
+              "PRIZE_TYPE": 2,
+              "PRIZE_VALUE": 50000,
+              "CREATE_DATE": "10:56 13/07/2023",
+              "TIME_WIN": 0,
+              "IMAGE_PRICE_TV": null,
+              "IMAGE_PRICE_PHONE": "https://banhangvnpt.vn/Uploads/images/2023/KM%20vnpt%20money.jpg",
+              "IMAGE_PRICE_WEB": null,
+              "STATUS": 0,
+              "TEXT_STATUS": "Chưa sử dụng",
+              "TEXT_BUTTON": "Nhận thưởng"
+            },
+            {
+              "PRIZE_ID": 7,
+              "PRIZE_NAME": "Galaxy",
+              "PRIZE_TYPE": 3,
+              "PRIZE_VALUE": 50000,
+              "CREATE_DATE": "10:56 13/07/2023",
+              "TIME_WIN": 0,
+              "IMAGE_PRICE_TV": null,
+              "IMAGE_PRICE_PHONE": "https://s12936.cdn.mytvnet.vn/vimages/ec/c4/4e/e0/02/22/ec4e0-pphimgalaxy-common-clip-unkn.png",
+              "IMAGE_PRICE_WEB": null,
+              "STATUS": 1,
+              "TEXT_STATUS": "Chưa sử dụng",
+              "TEXT_BUTTON": "Nhận thưởng"
+            },
+            {
+              "PRIZE_ID": 8,
+              "PRIZE_NAME": "Tiền VNPT Money",
+              "PRIZE_TYPE": 2,
+              "PRIZE_VALUE": 50000,
+              "CREATE_DATE": "10:56 13/07/2023",
+              "TIME_WIN": 0,
+              "IMAGE_PRICE_TV": null,
+              "IMAGE_PRICE_PHONE": "https://s77105.cdn.mytvnet.vn/vimages/c8/81/1d/db/b2/21/c81db-pvinaphone-common-clip-unkn.png",
+              "IMAGE_PRICE_WEB": null,
               "STATUS": 3,
-              "TEXT_STATUS": "Hết hạn",
-              "TEXT_BUTTON": "Khóa nút"
+              "TEXT_STATUS": "Chưa sử dụng",
+              "TEXT_BUTTON": "Nhận thưởng"
             }
           ],
           "error": null
         }
       },
-      "/api/v1/promotion/check-status/1895": {
-        "redirect": "/api/v1/promotion/check-status/1895",
+      "/api/v1/promotion/check-status/1": {
+        "redirect": "/api/v1/promotion/check-status/1",
         "modify_response_type": "full",
         "new_response_json": {
           "status": 200,
@@ -155,6 +237,172 @@
                 }
               ]
             }
+          },
+          "error": null
+        }
+      },
+      "/api/v1/promotion/check-status/5": {
+        "redirect": "/api/v1/promotion/check-status/5",
+        "modify_response_type": "full",
+        "new_response_json": {
+          "status": 200,
+          "result": 0,
+          "message": "Thành công!",
+          "data": {
+            "type_screen": 4,
+            "data": {
+              "CONTENT_ID": 138725,
+              "CONTENT_TITLE": "Bồ Cũ_Galaxy_7880",
+              "CONTENT_IMAGE_URL": "https://s12936.cdn.mytvnet.vn/vimages/ec/c4/4e/e0/02/22/ec4e0-pphimgalaxy-common-clip-unkn.png",
+              "IMAGE_NAME": null,
+              "CONTENT_DESC": "<p>Bảy năm trước, Sasha với suy nghĩ hiếu thẳng đã đăng tải hàng loạt những khoảnh khắc giường chiếu của bản thân và cô bạn gái cũ lên mạng mạng xã hội. Bảy năm sau, khi đang hạnh phúc bên Katya và chuẩn bị tiến đến hôn nhân, bức ảnh năm xưa bỗng nhiên bị đào mộ một cách bí ẩn. Và từ đó, cơn ác mộng người yêu cũ bắt đầu.</p>",
+              "TYPE_ID": 20,
+              "TYPE_CONTENT_PROCESS": 2,
+              "CONTENT_SINGLE": 1,
+              "CONTENT_AGE": 16,
+              "HOR_POSTER_WEBAPP": "/vimages/67/7d/d3/3e/ee/ef/67d3e-lbc1-content-mytv.jpg"
+            }
+          },
+          "error": null
+        }
+      },
+      "/api/v1/promotion/check-status/6": {
+        "redirect": "/api/v1/promotion/check-status/6",
+        "modify_response_type": "full",
+        "new_response_json": {
+          "status": 200,
+          "result": 0,
+          "message": "Thành công!",
+          "data": {
+            "type_screen": 4,
+            "data": {
+              "PRIZE_VALUE": 500000,
+              "PRIZE_VALUE_TEXT": "500.000 đ",
+              "CREATE_DATE": "2023-08-03 09:07:35",
+              "EXPIRE_DATE": "2023-08-07 09:07:35",
+              "TDT_TELCO": "Vinaphone",
+              "TDT_SERIAL": "987654321",
+              "TDT_PIN_CODE": "147258369",
+              "TDT_CREATE_DATE": "2023-07-24",
+              "IMAGE_PRICE_PHONE": "https://s77105.cdn.mytvnet.vn/vimages/c8/81/1d/db/b2/21/c81db-pvinaphone-common-clip-unkn.png",
+              "AUTO_FILL_NUMBER": "0564292312"
+            },
+            "error": null
+          }
+        }
+      },
+      "/api/v1/promotion/check-status/2": {
+        "redirect": "/api/v1/promotion/check-status/2",
+        "modify_response_type": "full",
+        "new_response_json": {
+          "status": 200,
+          "result": 0,
+          "message": "Thành công!",
+          "data": {
+            "data": {
+            "CONTENT_ID": 138725,
+            "CONTENT_TITLE": "Bồ Cũ_Galaxy_7880",
+            "CONTENT_IMAGE_URL": "/vimages/67/7d/d3/3e/ee/ef/67d3e-lbc1-content-mytv.jpg",
+            "IMAGE_NAME": null,
+            "CONTENT_DESC": "<p>Bảy năm trước, Sasha với suy nghĩ hiếu thẳng đã đăng tải hàng loạt những khoảnh khắc giường chiếu của bản thân và cô bạn gái cũ lên mạng mạng xã hội. Bảy năm sau, khi đang hạnh phúc bên Katya và chuẩn bị tiến đến hôn nhân, bức ảnh năm xưa bỗng nhiên bị đào mộ một cách bí ẩn. Và từ đó, cơn ác mộng người yêu cũ bắt đầu.</p>",
+            "TYPE_ID": 20,
+            "TYPE_CONTENT_PROCESS": 2,
+            "CONTENT_SINGLE": 1,
+            "CONTENT_AGE": 16,
+            "HOR_POSTER_WEBAPP": "/vimages/67/7d/d3/3e/ee/ef/67d3e-lbc1-content-mytv.jpg"
+          }
+          },
+          "error": null
+        }
+      },
+      "/api/v1/promotion/check-status/3": {
+        "redirect": "/api/v1/promotion/check-status/3",
+        "modify_response_type": "full",
+        "new_response_json": {
+          "status": 200,
+          "result": 0,
+          "message": "Thành công!",
+          "data": {
+            "type_screen": 4,
+            "data": {
+              "PRIZE_VALUE": 500000,
+              "PRIZE_VALUE_TEXT": "500.000 đ",
+              "PAY_RECEIVED_DATE": "20:05 ngày 19.09.2025",
+              "CREATE_DATE": "2023-08-03 09:07:35",
+              "EXPIRE_DATE": "2023-08-07 09:07:35",
+              "PAY_VNPT_PHONE": "0855677233"
+            },
+            "error": null
+          }
+        }
+      },
+      "/api/v1/promotion/check-status/4": {
+        "redirect": "/api/v1/promotion/check-status/4",
+        "modify_response_type": "full",
+        "new_response_json": {
+          "status": 200,
+          "result": 0,
+          "message": "Thành công!",
+          "data": {
+            "type_screen": 4,
+            "data": {
+              "PRIZE_VALUE": 500000,
+              "PRIZE_VALUE_TEXT": "500.000 đ",
+              "CREATE_DATE": "2023-08-03 09:07:35",
+              "EXPIRE_DATE": "2023-08-07 09:07:35",
+              "TDT_TELCO": "Vinaphone",
+              "TDT_SERIAL": "987654321",
+              "TDT_PIN_CODE": "147258369",
+              "TDT_PHONE_NUMBER": "0884232569",
+              "TDT_CREATE_DATE": "2023-07-24",
+              "IMAGE_PRICE_PHONE": "https://s77105.cdn.mytvnet.vn/vimages/c8/81/1d/db/b2/21/c81db-pvinaphone-common-clip-unkn.png",
+              "AUTO_FILL_NUMBER": "0564292312"
+            },
+            "error": null
+          }
+        }
+      },
+      "/api/v1/promotion/check-vnpt-money": {
+        "redirect": "/api/v1/promotion/check-vnpt-money",
+        "modify_response_type": "full",
+        "new_response_json": {
+          "status": 200,
+          "result": 0,
+          "message": "Thành công",
+          "data": {
+            "phone_valid": true,
+            "text_support": "Tổng đài CSKH: 1800 1166 (miễn phí)",
+            "message": "Phần quà trị giá 200000 đồng sẽ được cộng vào ví VNPT Money của Quý khách trong vòng 24h tiếp theo."
+          },
+          "error": null
+        }
+      },
+      "/api/v1/promotion/choose-telco-card": {
+        "redirect": "/api/v1/promotion/choose-telco-card",
+        "modify_response_type": "full",
+        "new_response_json": {
+          "status": 200,
+          "result": 0,
+          "message": "Thành công",
+          "data": {
+            "phone_valid": true,
+            "text_support": "Tổng đài CSKH: 1800 1166 (miễn phí)",
+            "message": "Phần quà trị giá 200000 đồng sẽ được cộng vào ví VNPT Money của Quý khách trong vòng 24h tiếp theo."
+          },
+          "error": null
+        }
+      },
+      "/api/v1/promotion/1379/choose-galaxy": {
+        "redirect": "/api/v1/promotion/1379/choose-galaxy",
+        "modify_response_type": "full",
+        "new_response_json": {
+          "status": 200,
+          "result": 0,
+          "message": "Thành công",
+          "data": {
+            "phone_valid": true,
+            "text_support": "Tổng đài CSKH: 1800 1166 (miễn phí)",
+            "message": "Chúc mừng Quý khách đã chọn xem phim <b>“Đặc Vụ Già Gân 2”</b> miễn phí. Nội dung phim này hiện tại chỉ xem được trên SmartTV. Quý khách vui lòng đăng nhập trên SmartTV để xem phim"
           },
           "error": null
         }
